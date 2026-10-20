@@ -63,41 +63,6 @@ flowchart TD
 - Python 3.10 or newer
 - A Google AI Studio API key for the Gemini API
 
-### Installation
-
-```bash
-git clone https://github.com/laywright/ai-coding-agent.git
-cd ai-coding-agent
-
-python -m venv .venv
-```
-
-Activate the virtual environment:
-
-| Shell | Command |
-|---|---|
-| Windows (Command Prompt) | `.venv\Scripts\activate.bat` |
-| Windows (PowerShell) | `.venv\Scripts\Activate.ps1` |
-| macOS / Linux | `source .venv/bin/activate` |
-
-Install the dependency:
-
-```bash
-pip install "autogen[gemini]"
-```
-
-### API key
-
-The key is read from the `GEMINI_API_KEY` environment variable. Never put it in the code or commit it.
-
-| Shell | Command |
-|---|---|
-| Windows (Command Prompt) | `set GEMINI_API_KEY=your-key-here` |
-| Windows (PowerShell) | `$env:GEMINI_API_KEY="your-key-here"` |
-| macOS / Linux | `export GEMINI_API_KEY="your-key-here"` |
-
-The variable lasts only for the current terminal session. Do not paste commands containing your key into chats, issues or screenshots.
-
 ### Run
 
 ```bash
@@ -134,12 +99,6 @@ Invalid settings stop the program with a clear message before any model is calle
 ## Safety model
 
 This tool runs code written by a language model. Treat it accordingly.
-
-- **Human approval is the main control.** The executor runs with `human_input_mode="ALWAYS"`, so nothing executes until you press Enter.
-- **Generated code runs on your machine** with your user permissions and can likely read your environment variables, including the API key. Read each block first.
-- **Installs go into a separate sandbox virtual environment** (`sandbox_venv/`), not your project environment. The reviewer is told to install only `pandas`, `numpy`, `matplotlib` and `yfinance`. That limit is a prompt instruction, not a technical enforcement, so check the package names in each install block before approving.
-- **Network use** is meant to be limited to package installation and price downloads. This is also a prompt instruction.
-- **Parameters are validated in plain Python,** and the task dates are computed in code rather than left to the model.
 - For anything beyond experimentation, run the executor inside a container such as Docker so generated code cannot reach your files.
 
 ## Project structure
@@ -176,4 +135,4 @@ Released under the [MIT License](LICENSE).
 
 ## Author
 
-**Alex Ngechu Muiruri** · [GitHub](https://github.com/laywright)
+**Alex Muiruri** · [GitHub](https://github.com/laywright)
